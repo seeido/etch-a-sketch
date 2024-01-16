@@ -1,6 +1,7 @@
 //Function: change sketch size based on given arguments
 const sketch = document.querySelector("#sketch");
 const sketchSize = sketch.clientWidth; // get size of the sketch
+
 function createSketch(container, size) {
   sketch.innerHTML = ""; // reset sketch
   // loop on each row and insert divs accordingly
@@ -21,6 +22,7 @@ function createSketch(container, size) {
 //Change sketch size when slider value changes
 const range = document.querySelector("#range");
 const rangeValueSpan = document.querySelector("#range-value-span");
+
 range.addEventListener("input", () => {
   createSketch(sketch, range.value);
   rangeValueSpan.textContent = `${range.value}x${range.value}`;
@@ -33,6 +35,7 @@ rangeValueSpan.textContent = `${range.value}x${range.value}`;
 //Function: make sketch drawable by adding event listeners to the child divs
 // make sure LMB is clicked to draw
 let isMousePressed = false;
+
 document.addEventListener("mousedown", () => {
   isMousePressed = true;
 });
@@ -40,7 +43,8 @@ document.addEventListener("mouseup", () => {
   isMousePressed = false;
 });
 
-let currentColor = "black"; // get current chosen color for drawing [CHANGE LATER]
+let defualtColor = "black"; // defualt color for when webpage loads
+let currentColor = defualtColor;
 function makeDrawable() {
   const sketchDivs = document.querySelectorAll(".sketch-div");
   sketchDivs.forEach((div) => {
@@ -48,6 +52,10 @@ function makeDrawable() {
       if (isMousePressed) {
         div.style.backgroundColor = currentColor;
       }
+    });
+    // makes sure the div that got clicked on gets painted
+    div.addEventListener("mousedown", () => {
+      div.style.backgroundColor = currentColor;
     });
   });
 }
