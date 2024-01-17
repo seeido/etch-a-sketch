@@ -9,6 +9,7 @@
 body {
   height: 100vh;
   width: 100vw;
+  background-color: rgb(240, 240, 240);
   display: flex;
   flex-direction: column;
 }
@@ -23,20 +24,66 @@ footer {
 
 header {
   padding: 1.5rem 0;
+}
+h1 {
+  cursor: default;
   font-family: "Dancing Script", cursive;
   font-size: 3.5rem;
 }
 
 main {
   flex: 1;
+  display: flex;
+}
+
+.sketch-tools,
+.sketch-container,
+.sketch-colors {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sketch-tools {
+  align-items: end;
+}
+.tools-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  margin-right: 2.5rem;
+}
+.svg {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+.svg:hover {
+  opacity: 0.7;
 }
 
 .sketch {
-  border: 1px solid black;
-  width: 31.25rem;
-  height: 31.25rem;
   display: flex;
   flex-wrap: wrap;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  min-width: 500px;
+  width: 100%;
+  aspect-ratio: 1;
+}
+/* vars below are made in the script.js file */
+.sketch-cell {
+  flex-basis: calc(100% / var(--grid-cols));
+  flex-basis: calc(100% / var(--grid-rows));
+}
+
+/* Adjust later */
+.range-input-text {
+  display: inline-block;
+  width: 4rem;
+  text-align: center;
 }
 
 footer {

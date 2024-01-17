@@ -1,61 +1,27 @@
-//Function: change sketch size based on given arguments
+//Function: create sketch and resize when range input value's change
 const sketch = document.querySelector("#sketch");
-const sketchSize = sketch.clientWidth; // get size of the sketch
+const rangeInput = document.querySelector("#range-input");
 
-function createSketch(container, size) {
+function createSketch(rows, cols) {
   sketch.innerHTML = ""; // reset sketch
-  // loop on each row and insert divs accordingly
-  for (let row = 0; row < size; row++) {
-    for (let column = 0; column < size; column++) {
-      const pixels = sketchSize / size; // the appropiate size of a sketch child div
-      const newDiv = document.createElement("div");
-      newDiv.classList.add("sketch-div"); // "sketch-div" class used for adding event listeners
-      newDiv.style.width = `${pixels}px`;
-      newDiv.style.height = `${pixels}px`;
-
-      sketch.appendChild(newDiv);
-    }
+  // make and add all cells to the sketch
+  for (let i = 0; i < rows * cols; i++) {
+    const div = document.createElement("div");
+    div.classList.add("sketch-cell");
+    sketch.appendChild(div);
   }
-  makeDrawable(); // call function to make the sketch drawable
+  // make css vars with the number of rows and columns
+  sketch.style.setProperty("--grid-rows", rows);
+  sketch.style.setProperty("--grid-cols", cols);
 }
+// call function when page loads to create initial sketch
+createSketch(rangeInput.value, rangeInput.value);
 
-//Change sketch size when slider value changes
-const range = document.querySelector("#range");
-const rangeValueSpan = document.querySelector("#range-value-span");
-
-range.addEventListener("input", () => {
-  createSketch(sketch, range.value);
-  rangeValueSpan.textContent = `${range.value}x${range.value}`;
+// call function when range input's value changes (and change range value span's value)
+const rangeInputText = document.querySelector("#range-input-text");
+rangeInputText.textContent = `${rangeInput.value}x${rangeInput.value}`; // set the initial text when page loads
+rangeInput.addEventListener("input", () => {
+  rangeInputText.textContent = `${rangeInput.value}x${rangeInput.value}`;
+  // call createSketch function with range input value as argument
+  createSketch(rangeInput.value, rangeInput.value);
 });
-
-// set defualt sketch automatically when website loads
-createSketch(sketch, range.value);
-rangeValueSpan.textContent = `${range.value}x${range.value}`;
-
-//Function: make sketch drawable by adding event listeners to the child divs
-// make sure LMB is clicked to draw
-let isMousePressed = false;
-
-document.addEventListener("mousedown", () => {
-  isMousePressed = true;
-});
-document.addEventListener("mouseup", () => {
-  isMousePressed = false;
-});
-
-let defualtColor = "black"; // defualt color for when webpage loads
-let currentColor = defualtColor;
-function makeDrawable() {
-  const sketchDivs = document.querySelectorAll(".sketch-div");
-  sketchDivs.forEach((div) => {
-    div.addEventListener("mouseover", () => {
-      if (isMousePressed) {
-        div.style.backgroundColor = currentColor;
-      }
-    });
-    // makes sure the div that got clicked on gets painted
-    div.addEventListener("mousedown", () => {
-      div.style.backgroundColor = currentColor;
-    });
-  });
-}

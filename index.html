@@ -7,28 +7,33 @@
     <title>Etch a Sketch</title>
   </head>
   <body>
-    <header>Etch a Sketch</header>
+    <header>
+      <h1>Etch a Sketch</h1>
+    </header>
+
     <main>
-      <section class="sketch-tools">
+      <div class="sketch-tools">
         <div class="tools-container">
-          <img src="./icons/eraser.svg" alt="Eraser" class=".svg-icon" />
-          <img src="./icons/trash.svg" alt="Delete sketch" class=".svg-icon" />
-          <img
-            src="./icons/camera.svg"
-            alt="Download sketch"
-            class=".svg-icon"
-          />
+          <img src="./icons/eraser.svg" alt="Eraser" class="svg" />
+          <img src="./icons/trash.svg" alt="Delete sketch" class="svg" />
+          <img src="./icons/camera.svg" alt="Download sketch" class="svg" />
         </div>
-      </section>
-      <section class="sketch-section">
+      </div>
+
+      <div class="sketch-container">
         <div class="sketch" id="sketch"></div>
-        <div class="slider-div">
-          <span id="range-value-span">N/A</span>
-          <input id="range" type="range" min="1" max="100" value="32" />
+        <div class="slider-container">
+          <span id="range-input-text" class="range-input-text">N/A</span>
+          <input id="range-input" type="range" min="1" max="100" value="32" />
         </div>
-      </section>
-      <section class="sketch-colors"></section>
+      </div>
+
+      <div class="sketch-colors">
+        <div class="color-palette"></div>
+        <button class="rgb-btn" id="rgb-btn">RGB Mode</button>
+      </div>
     </main>
+
     <footer>
       <a href="https://github.com/seeido" target="_blank">@Seeido</a>
     </footer>
