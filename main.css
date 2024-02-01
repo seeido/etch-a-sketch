@@ -31,9 +31,10 @@ h1 {
   font-size: 3.5rem;
 }
 
+/* Main section */
 main {
   flex: 1;
-  display: flex;
+  gap: 2.5rem;
 }
 
 .sketch-tools,
@@ -54,7 +55,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 5rem;
-  margin-right: 2.5rem;
 }
 .svg {
   width: 3rem;
@@ -65,6 +65,9 @@ main {
   opacity: 0.7;
 }
 
+.sketch-container {
+  gap: 1.5rem;
+}
 .sketch {
   display: flex;
   flex-wrap: wrap;
@@ -73,19 +76,97 @@ main {
   width: 100%;
   aspect-ratio: 1;
 }
-/* vars below are made in the script.js file */
 .sketch-cell {
+  /* vars below are made in the script.js file */
   flex-basis: calc(100% / var(--grid-cols));
   flex-basis: calc(100% / var(--grid-rows));
 }
 
-/* Adjust later */
-.range-input-text {
-  display: inline-block;
-  width: 4rem;
-  text-align: center;
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 }
 
+.range-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  width: 100%;
+}
+.range-input::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 16px;
+}
+.range-input::-moz-range-track {
+  height: 0.5rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 16px;
+}
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: calc(0.25rem - 1);
+  transform: translateY(-25%);
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: black;
+}
+.range-input::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: calc(0.25rem - 1);
+  transform: translateY(-25%);
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.range-input-text {
+  font-family: cursive;
+}
+
+.sketch-colors {
+  align-items: start;
+}
+.colors-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.color-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 10rem;
+  height: 10rem;
+  border: none;
+  cursor: pointer;
+}
+.color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 15px;
+}
+.color-input::-moz-color-swatch {
+  border: none;
+  border-radius: 15px;
+}
+
+.rgb-btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Footer section */
 footer {
   padding: 0.25rem 0;
 }

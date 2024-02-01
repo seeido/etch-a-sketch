@@ -21,16 +21,25 @@
       </div>
 
       <div class="sketch-container">
-        <div class="sketch" id="sketch"></div>
+        <div id="sketch" class="sketch"></div>
         <div class="slider-container">
-          <span id="range-input-text" class="range-input-text">N/A</span>
-          <input id="range-input" type="range" min="1" max="100" value="32" />
+          <input
+            class="range-input"
+            id="range-input"
+            type="range"
+            min="1"
+            max="100"
+            value="32"
+          />
+          <span class="range-input-text" id="range-input-text">N/A</span>
         </div>
       </div>
 
       <div class="sketch-colors">
-        <div class="color-palette"></div>
-        <button class="rgb-btn" id="rgb-btn">RGB Mode</button>
+        <div class="colors-container">
+          <input class="color-input" id="color-input" type="color" />
+          <button class="rgb-btn" id="rgb-btn">RGB Mode</button>
+        </div>
       </div>
     </main>
 
