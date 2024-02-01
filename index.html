@@ -14,9 +14,19 @@
     <main>
       <div class="sketch-tools">
         <div class="tools-container">
-          <img src="./icons/eraser.svg" alt="Eraser" class="svg" />
-          <img src="./icons/trash.svg" alt="Delete sketch" class="svg" />
-          <img src="./icons/camera.svg" alt="Download sketch" class="svg" />
+          <img src="./icons/eraser.svg" alt="Eraser" id="eraser" class="svg" />
+          <img
+            src="./icons/trash.svg"
+            alt="Delete sketch"
+            id="trash"
+            class="svg"
+          />
+          <img
+            src="./icons/camera.svg"
+            alt="Download sketch"
+            id="download-sketch"
+            class="svg"
+          />
         </div>
       </div>
 
@@ -24,21 +34,21 @@
         <div id="sketch" class="sketch"></div>
         <div class="slider-container">
           <input
-            class="range-input"
             id="range-input"
+            class="range-input"
             type="range"
             min="1"
             max="100"
             value="32"
           />
-          <span class="range-input-text" id="range-input-text">N/A</span>
+          <span id="range-input-text" class="range-input-text">N/A</span>
         </div>
       </div>
 
       <div class="sketch-colors">
         <div class="colors-container">
-          <input class="color-input" id="color-input" type="color" />
-          <button class="rgb-btn" id="rgb-btn">RGB Mode</button>
+          <input id="color-input" class="color-input" type="color" />
+          <button id="rgb-btn" class="rgb-btn">RGB Mode</button>
         </div>
       </div>
     </main>
