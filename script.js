@@ -14,7 +14,7 @@ function createSketch(rows, cols) {
   sketch.style.setProperty("--grid-rows", rows);
   sketch.style.setProperty("--grid-cols", cols);
 
-  makeDrawable(); // automatically call function to make the sketch drawable
+  makeDrawable(); // call function to make the sketch drawable
 }
 
 createSketch(rangeInput.value, rangeInput.value); // call function when page loads to create initial sketch
@@ -23,20 +23,56 @@ createSketch(rangeInput.value, rangeInput.value); // call function when page loa
 const rangeInputText = document.querySelector("#range-input-text");
 rangeInputText.textContent = `${rangeInput.value}x${rangeInput.value}`; // set the initial range span's value when page loads
 rangeInput.addEventListener("input", () => {
+  // call createSketch function with range input value as argument and change range span's value
   rangeInputText.textContent = `${rangeInput.value}x${rangeInput.value}`;
-  // call createSketch function with range input value as argument
   createSketch(rangeInput.value, rangeInput.value);
 });
 
-//Function: make sketch drawable by adding event listeners to the child divs
+//Section: change/toggle modes
+let mode = "brush";
 
-// get the color to draw with
+// function: reset/deselect all modes
+function resetToggled() {
+  mode = undefined;
+  eraser.classList.remove("toggle");
+  rgbBtn.classList.remove("toggle");
+}
+
+// event listeners: toggle chosen mode
 const colorInput = document.querySelector("#color-input");
-let currentColor = colorInput.value; // set initial color when webpage loads
+const eraser = document.querySelector("#eraser");
+const rgbBtn = document.querySelector("#rgb-btn");
+
 colorInput.addEventListener("input", () => {
-  currentColor = colorInput.value;
+  resetToggled();
+  mode = "brush";
+});
+colorInput.addEventListener("click", () => {
+  resetToggled();
+  mode = "brush";
 });
 
+eraser.addEventListener("click", () => {
+  resetToggled();
+  eraser.classList.add("toggle");
+  mode = "eraser";
+});
+
+rgbBtn.addEventListener("click", () => {
+  resetToggled();
+  rgbBtn.classList.add("toggle");
+  mode = "rgb";
+});
+
+// function: get random colors for RGB mode
+function getRandomColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+//Function: make sketch drawable
 // make sure LMB is pressed to draw
 let isMousePressed = false;
 document.addEventListener("mousedown", () => {
@@ -48,18 +84,48 @@ document.addEventListener("mouseup", () => {
 
 function makeDrawable() {
   const sketchDivs = document.querySelectorAll(".sketch-cell");
-  sketchDivs.forEach((div) => {
+  sketchDivs.forEach((cell) => {
     // PC part
-    div.addEventListener("mouseover", () => {
+    cell.addEventListener("mouseover", () => {
       if (isMousePressed) {
-        div.style.backgroundColor = currentColor;
+        switch (mode) {
+          case "brush":
+            cell.style.backgroundColor = colorInput.value;
+            break;
+          case "eraser":
+            cell.style.backgroundColor = sketch.style.backgroundColor;
+            break;
+          case "rgb":
+            cell.style.backgroundColor = getRandomColor();
+            break;
+        }
       }
     });
-    // makes sure the div that got clicked on first gets painted
-    div.addEventListener("mousedown", () => {
-      div.style.backgroundColor = currentColor;
+    // makes sure the cell that got clicked on first gets painted
+    cell.addEventListener("mousedown", () => {
+      switch (mode) {
+        case "brush":
+          cell.style.backgroundColor = colorInput.value;
+          break;
+        case "eraser":
+          cell.style.backgroundColor = sketch.style.backgroundColor;
+          break;
+        case "rgb":
+          cell.style.backgroundColor = getRandomColor();
+          break;
+      }
     });
     // Mobile part
     // DO LATER
   });
 }
+
+//Section: trash and downlaod button
+// Trash button
+const trash = document.querySelector("#trash");
+trash.addEventListener("click", () => {
+  createSketch(rangeInput.value, rangeInput.value);
+});
+
+// Download button
+const download = document.querySelector("#download");

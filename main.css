@@ -1,5 +1,12 @@
+/* Imports */
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
 
+/* Variables */
+:root {
+  --background-main-color: rgb(240, 240, 240);
+}
+
+/* Global declarations */
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +16,7 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-color: rgb(240, 240, 240);
+  background-color: var(--background-main-color);
   display: flex;
   flex-direction: column;
 }
@@ -22,6 +29,7 @@ footer {
   align-items: center;
 }
 
+/* Header section */
 header {
   padding: 1.5rem 0;
 }
@@ -62,6 +70,10 @@ main {
   cursor: pointer;
 }
 .svg:hover {
+  opacity: 0.7;
+}
+
+.eraser.toggle {
   opacity: 0.7;
 }
 
@@ -165,6 +177,15 @@ main {
 .rgb-btn {
   font-size: 1.5rem;
   cursor: pointer;
+  background-color: var(--background-main-color);
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.rgb-btn:hover {
+  background-color: rgb(220, 220, 220);
+}
+.rgb-btn.toggle {
+  background-color: rgb(220, 220, 220);
 }
 
 /* Footer section */
