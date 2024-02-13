@@ -90,9 +90,10 @@ main {
   aspect-ratio: 1;
 }
 .sketch-cell {
+  background-color: white;
   /* vars below are made in the script.js file */
   flex-basis: calc(100% / var(--grid-cols));
-  flex-basis: calc(100% / var(--grid-rows));
+  border: 0;
 }
 
 .slider-container {
